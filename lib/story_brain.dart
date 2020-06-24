@@ -67,7 +67,7 @@ class StoryBrain {
         if (choiceNumber == 1) {
           _storyNumber = 5;
         } else if (choiceNumber == 2) {
-          _storyNumber = 5;
+          _storyNumber = 4;
         }
         break;
       default:
