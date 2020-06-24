@@ -1,7 +1,7 @@
 import 'story.dart';
 
 class StoryBrain {
-  int storyNumber = 0;
+  int _storyNumber = 0;
 
   List<Story> _storyData = [
     Story(
@@ -41,33 +41,33 @@ class StoryBrain {
     )
   ];
 
-  String getStory() => _storyData[storyNumber].storyTitle;
+  String getStory() => _storyData[_storyNumber].storyTitle;
 
-  String getChoice1() => _storyData[storyNumber].choice1;
+  String getChoice1() => _storyData[_storyNumber].choice1;
 
-  String getChoice2() => _storyData[storyNumber].choice2;
+  String getChoice2() => _storyData[_storyNumber].choice2;
 
   void nextStory(int choiceNumber) {
-    switch (storyNumber) {
+    switch (_storyNumber) {
       case 0:
         if (choiceNumber == 1) {
-          storyNumber = 2;
+          _storyNumber = 2;
         } else if (choiceNumber == 2) {
-          storyNumber = 1;
+          _storyNumber = 1;
         }
         break;
       case 1:
         if (choiceNumber == 1) {
-          storyNumber = 2;
+          _storyNumber = 2;
         } else if (choiceNumber == 2) {
-          storyNumber = 3;
+          _storyNumber = 3;
         }
         break;
       case 2:
         if (choiceNumber == 1) {
-          storyNumber = 5;
+          _storyNumber = 5;
         } else if (choiceNumber == 2) {
-          storyNumber = 5;
+          _storyNumber = 5;
         }
         break;
       default:
@@ -76,9 +76,13 @@ class StoryBrain {
     }
   }
 
-  void restart() => storyNumber = 0;
+  void restart() => _storyNumber = 0;
+
+  bool buttonShouldBeVisible() {
+    if (_storyNumber == 0 || _storyNumber == 1 || _storyNumber == 2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
-
-//TODO: Step 25 - Change the storyNumber property into a private property so that only story_brain.dart has access to it. You can do this by right clicking on the name (storyNumber) and selecting Refactor -> Rename to make the change across all the places where it's used.
-
-//TODO: Step 27 - Create a method called buttonShouldBeVisible() which checks to see if storyNumber is 0 or 1 or 2 (when both buttons should show choices) and return true if that is the case, else it should return false.
